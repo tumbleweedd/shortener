@@ -13,4 +13,5 @@
 Также добавил несколько тестов для http хендлеров.
 
 
-![Uploading test.gif…]()
+![Animation](test.gif)
+
