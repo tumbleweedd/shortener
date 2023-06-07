@@ -5,6 +5,8 @@ import (
 	"github.com/tumbleweedd/shortener/internal/repositories"
 )
 
+//go:generate mockgen -source=service.go -destination=mocks/mock.go
+
 type Shortener interface {
 	ShortenURL(ctx context.Context, longURL string) (string, error)
 	GetLongURL(ctx context.Context, code string) (string, error)
