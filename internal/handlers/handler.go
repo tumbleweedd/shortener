@@ -16,7 +16,7 @@ func NewHandler(service *services.Service) *Handler {
 func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
 
-	router.POST("/a", h.saveURL)
+	router.POST("/a", normalizeURL(), h.saveURL)
 	router.GET("/s/:code", h.redirect)
 
 	return router
