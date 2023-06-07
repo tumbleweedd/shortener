@@ -12,13 +12,13 @@ func normalizeURL() gin.HandlerFunc {
 			rawURL := c.Query("url")
 
 			if rawURL == "" {
-				c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Missing URL parameter"})
+				newErrorResponse(c, http.StatusBadRequest, "missing url parameter")
 				return
 			}
 
 			normalizedURL, err := url.QueryUnescape(rawURL)
 			if err != nil {
-				c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Invalid URL"})
+				newErrorResponse(c, http.StatusBadRequest, "Invalid URL")
 				return
 			}
 

@@ -5,10 +5,6 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type statusResponse struct {
-	Status string `json:"status"`
-}
-
 type Error struct {
 	Message string `json:"message"`
 }
