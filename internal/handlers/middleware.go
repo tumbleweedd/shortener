@@ -18,7 +18,7 @@ func normalizeURL() gin.HandlerFunc {
 
 			normalizedURL, err := url.QueryUnescape(rawURL)
 			if err != nil {
-				newErrorResponse(c, http.StatusBadRequest, "Invalid URL")
+				newErrorResponse(c, http.StatusBadRequest, "invalid URL")
 				return
 			}
 

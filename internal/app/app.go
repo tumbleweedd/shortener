@@ -2,21 +2,23 @@ package app
 
 import (
 	"context"
-	"github.com/redis/go-redis/v9"
-	"github.com/sirupsen/logrus"
-	server "github.com/tumbleweedd/shortener"
-	"github.com/tumbleweedd/shortener/internal/handlers"
-	"github.com/tumbleweedd/shortener/internal/repositories"
-	"github.com/tumbleweedd/shortener/internal/services"
+	"github.com/tumbleweedd/shortener/internal/server"
 	"log"
 	"os"
 	"os/signal"
 	"syscall"
+
+	"github.com/redis/go-redis/v9"
+	"github.com/sirupsen/logrus"
+	"github.com/tumbleweedd/shortener/internal/handlers"
+	"github.com/tumbleweedd/shortener/internal/repositories"
+	"github.com/tumbleweedd/shortener/internal/services"
 )
 
 func Run() {
+	redisHost := os.Getenv("REDIS_HOST") + ":6379"
 	client := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
+		Addr:     redisHost,
 		Password: "",
 		DB:       0,
 	})
@@ -33,7 +35,7 @@ func Run() {
 	srv := new(server.Server)
 
 	go func() {
-		if err := srv.Run("8000", handler.InitRoutes()); err != nil {
+		if err := srv.Run("3000", handler.InitRoutes()); err != nil {
 			logrus.Fatalf("error occured while running http server: %s", err.Error())
 		}
 	}()
