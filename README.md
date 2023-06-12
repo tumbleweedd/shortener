@@ -15,7 +15,7 @@
 Также добавил несколько тестов для http хендлеров.
 
 Для запуска в docker:
-`docker-compose up --build`
+`make run`
 
 
 ![Animation](media/test.gif)
